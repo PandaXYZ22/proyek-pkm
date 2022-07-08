@@ -16,7 +16,7 @@
         </div>
             <!--menambah tulisan-->
 
-        <div class="position-relative col-4 hilang" style="left: 2vh; top: 15vh;">
+        <div class="position-relative col-4 hilang" style="right: 5vh; top: 15vh;">
           <img style="max-width: 35vw;" class="img" src="https://drive.google.com/uc?export=view&id=1czQc83UhJ1LxJIbR2H_ewCDA5Vpi-x-T" alt="">
         </div>
       </div>
