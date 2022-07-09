@@ -50,4 +50,6 @@ Route::resource("fasilitas", FasilitasController::class)->middleware("auth");
 
 Route::get("/even", [HomeController::class, "showEvent"]);
 
-Route::resource("event", EventController::class);
+Route::get("/even/{id}", [HomeController::class, "detailEvent"]);
+
+Route::resource("event", EventController::class)->middleware("auth")->except("show");

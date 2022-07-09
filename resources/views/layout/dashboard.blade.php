@@ -35,6 +35,13 @@
     <link href="/dashboard/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="/dashboard/demo/demo.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/trix.css">
+    <script type="text/javascript" src="/trix.js"></script>
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display : none
+        }
+    </style>
     </head>
 
     <body class="">

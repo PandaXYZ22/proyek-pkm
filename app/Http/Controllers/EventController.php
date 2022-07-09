@@ -44,6 +44,7 @@ class EventController extends Controller
     {
         Event::create([
             "title" => $request->event,
+            "deskripsi" => $request->deskripsi,
             "start" => $request->waktu_mulai,
             "end" => $request->waktu_selesai
         ]);
@@ -87,6 +88,7 @@ class EventController extends Controller
     {
         Event::find($id)->update([
             "title" => $request->event,
+            "deskripsi" => $request->deskripsi,
             "start" => $request->waktu_mulai,
             "end" => $request->waktu_selesai
         ]);

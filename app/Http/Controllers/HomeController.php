@@ -56,4 +56,11 @@ class HomeController extends Controller
             "title" => "Event"
         ]);
     }
+
+    public function detailEvent ($id) {
+        return view("event.show", [
+            "title" => "Event",
+            "event" => Event::find($id)
+        ]);
+    }
 }

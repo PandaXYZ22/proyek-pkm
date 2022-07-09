@@ -49,7 +49,7 @@
         events: {!!$event!!},
         eventColor : "orange",
         eventClick: function(info) {
-            window.location.href = "/";
+            window.location.href = "/even/" + info.event.id;
         }
         });
 
