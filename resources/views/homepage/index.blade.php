@@ -12,7 +12,7 @@
       <div class="row align-items-center">
         <div class="col" style="text-align: start!important;">
           <h3><strong>Rumah Kompetisi</strong></h3> 
-          <p>Belajar Riset dan Menulis Karya Ilmiah dengan Mudah serta Menyenangkan Membangun Ekosistem Keilmiahan dan Penelitian Untuk Mencetak Inovator Muda Indonesia</p>
+          <p>Media pembelajaran atau platform pusat pelatihan skill untuk berbagai kompetisi mahasiswa yang bertujuan membantu mewujudkan prestasi yang ingin dicapai serta solusi terbaik meningkatkan motivasi belajar untuk mecapai kesuksesan.</p>
         </div>
             <!--menambah tulisan-->
 
@@ -46,7 +46,7 @@
             @endif
           </div>
           <div class="col-4">
-            <img src="@if($item->instansi) /storage/{{$item->instansi}} @else https://lppm.unnes.ac.id/storage/2015/08/Logo-Transparan-Warna-1.png @endif" alt="">
+            <img src="@if($item->instansi) /storage/{{$item->instansi}} @else https://drive.google.com/uc?export=view&id=1N8-7rqjH6K8t6lS7fKVeYyW_eQJr4-Sz @endif" style="border-radius: 5px;" alt="">
           </div>
         </div>
         <div class="card-body" style="max-height: 275px" >
@@ -99,7 +99,7 @@
     <div class="row align-items-center">
       <div class="col">
         <h2><strong class="text-primary">Rumah Kompetisi</strong> Platinum Class</h2>
-        <p>Pelayanan dan Fasilitas Bagi Para Konsumen yang Ingin Berkonsultasi secara Privat dengan para tentor mengenai persiapan lomba</p>
+        <p>Rumah Kompetisi Class Premium merupakan layanan yang disediakan terbatas oleh RK, berupa mengunakan layanan website yang memiliki limited akses. Didalam Rumah Kompetisi Class Premium ini disediakan layanan berupa website yang terhubung langsung dengan tentor dan diberikan secara private.</p>
 
         <div class="modal fade text-dark" id="promo" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
           <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -178,7 +178,7 @@
         <button class="btn btn-primary" data-toggle="modal" data-target="#promo"><strong>Spesial Promo</strong></button>
       </div>
       <div class="position-relative col-4 hilang" style="left: 8vh; bottom: 17vh;">
-        <img style="width: 20vw; border-radius: 20px;" class="img-raised" src="https://drive.google.com/uc?export=view&id=1l1qCGKEVl6QyrueHDiIxzP54gpKxPmWQ" alt="">
+        <img style="width: 20vw; border-radius: 20px;" class="img-raised" src="https://drive.google.com/uc?export=view&id=1DWDQ6hLTnA2wZnm-0uQmNG8oBfhxGW5N" alt="">
       </div>
     </div>
   </div>
@@ -188,7 +188,7 @@
     <div class="col-lg-7">
       <h3 class="text-primary">Rumah Kompetisi</h3>
       <h1><strong>Mengapa Kami ?</strong></h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit sint, quo magni sit inventore et necessitatibus delectus similique laudantium molestias modi voluptate tempore mollitia dolore, obcaecati voluptas, assumenda accusantium esse.</p>
+      <p>Karena Rumah Kompetisi sendiri dapat diakses dimanapun dan kapanpun sehingga dapat menghemat waktu dan tenaga, selain itu didalam rumah Kompetisi memiliki beberapa fitur unggulan yang dapat membantu mahasiswa untuk meningkatkan skillnya.</p>
     </div>
     <div class="col-lg-5">
       <div class="row mb-2">
@@ -198,19 +198,19 @@
           </div>
         </div>
         <div class="col">
-          <h6>Kurikulum Terbaik</h6>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, voluptatum.</p>
+          <h6>Fitur Unggulan</h6>
+          <p>Memiliki beberapa fitur unggulan yang dapat membantu mahasiswa untuk meningkatkan skillnya, contohnya adalah fitur Rumah Kompetisi Class, dalam fitur ini nantinya terdapat banyak kelas sesuai dengan yang dibutuhkan mahasiswa.</p>
         </div>
       </div>
       <div class="row  mb-2">
         <div class="col-2">
           <div class="d-flex bg-primary rounded-circle text-white" style="width: 40px; height:40px;">
-            <i class="fa-solid fa-clock m-auto"></i>
+            <i class="fa-solid fa-money-bills m-auto"></i>
           </div>
         </div>
         <div class="col">
-          <h6>Waktu Fleksibel</h6>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, voluptatum.</p>
+          <h6>Murah dan Berkualitas</h6>
+          <p>Menghadirkan fitur yang lengkap, berkualitas, dan tentunya terjangkau untuk diikuti oleh seluruh mahasiswa.</p>
         </div>
       </div>
       <div class="row  mb-2">
@@ -221,7 +221,7 @@
         </div>
         <div class="col">
           <h6>Mentor Profesional</h6>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, voluptatum.</p>
+          <p>Dibimbing oleh mentor berkualitas yang sudah terseleksi, disini Rumah Kompetisi bekerjasama dengan mentor-mentor yang sudah berpengalaman dan memiliki skill yang mumpuni dalam bidang kompetisi.</p>
         </div>
       </div>
     </div>
