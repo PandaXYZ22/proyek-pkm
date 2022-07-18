@@ -11,7 +11,7 @@
         <div class="row align-items-center">
             <div class="col" style="text-align: start!important;">
             <h3><strong>Rumah Kompetisi</strong></h3> 
-            <p>Penyedia Platoform Belajar Bagi Mahasiswa</p>
+            <p>Media pembelajaran atau platform pusat pelatihan skill untuk berbagai kompetisi mahasiswa yang bertujuan membantu mewujudkan prestasi yang ingin dicapai serta solusi terbaik meningkatkan motivasi belajar untuk mecapai kesuksesan.</p>
             </div>
         </div>
         </div>
@@ -20,8 +20,8 @@
 <div class="container mb-5 mt-5">
     <div class="row">
         <div class="col-lg-4">
-            <img src="https://img.freepik.com/free-photo/portrait-young-asia-lady-with-positive-expression-arms-crossed-smile-broadly-dressed-casual-clothing-looking-camera-pink-background_7861-3201.jpg?t=st=1656720589~exp=1656721189~hmac=b5a386e7f63952a0c7f3cda3f92d9903eb5f1844085dc84f772b032e3669e41d&w=1380" alt="">
-            <h4 class="text-center"><strong>Rahman Surahman</strong></h4>
+            <img src="https://drive.google.com/uc?export=view&id=1mwJVmVAvB77AJq03oA-AuwXTjWWHSpVQ" alt="">
+            <h4 class="text-center"><strong>Achmad Nauval Waliuddin</strong></h4>
             <p class="text-center">Co-Founder Rumah Kompetisi</p>
         </div>
         <div class="col-lg-1 d-flex justify-content-center">
@@ -31,7 +31,11 @@
             <div>
                 <h1><strong>Rumah Kompetisi</strong></h1>
                 <p class="text-justify">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem officia odio, cum animi optio, nihil vero ipsam unde debitis natus laudantium esse. Ex asperiores animi libero adipisci tempora quisquam blanditiis velit laborum impedit repellendus, porro eaque dolore quas minus voluptatibus nemo consequuntur doloribus, accusamus rem. Architecto ea consectetur reiciendis in?
+                    Rumah Kompetisi merupakan platform pelatihan dan pengembangan skill mahasiswa
+                    yang menawarkan berbagai layanan mengenai pelatihan dalam kepenulisan seperti  
+                    riset, entrepreneur, dan persiapan berbagai bentuk perlombaan baik nasional
+                    maupun Internasional. Kami siap membantu dan membimbing para mahasiswa
+                    dalam berkompetisi dan mewujudkan prestasi yang ingin dicapai.
                 </p>
             </div>
         </div>
@@ -42,11 +46,13 @@
         <div class="col-lg-6">
             <div>
                 <h4><strong>Visi</strong></h4>
-                <p class="text-justify">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia natus sequi commodi numquam dolorum dicta atque ab maiores eveniet laudantium.</p>
+                <p class="text-justify">Untuk memberikan layanan belajar bermutu dengan harga terjangkau,</p>
+                <p class="text-justify">memaksimalkan mutu dan mewujudkan lapangan kerja bagi tenaga pendidik,</p>
+                <p class="text-justify">serta memudahkan mahasiswa, tenaga pendidik, dalam kegiatannya melalui teknologi pendidikan Rumah Kompetisi.</p>
             </div>
             <div>
                 <h4><strong>Misi</strong></h4>
-                <p class="text-justify">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia natus sequi commodi numquam dolorum dicta atque ab maiores eveniet laudantium.</p>
+                <p class="text-justify">Untuk memudahkan mahasiswa mendapatkan mentoring yang bermutu dengan memanfaatkan teknologi dimana pun dan kapan pun.</p>
             </div>
             <div>
                 <h4 class="text-center"><strong>Kontak</strong></h4>
