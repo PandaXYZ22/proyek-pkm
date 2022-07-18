@@ -32,7 +32,7 @@
     @foreach($kelas as $item)
     <div class="col-lg-4 d-flex justify-content-center">
       <div class="card overflow-hidden" style="max-width: 20rem; border-radius: 20px; box-shadow: black">
-        <img class="card-img-top img-raised" src="@if($item->background == null) https://drive.google.com/uc?export=view&id=1_Qm6Rr_4dIipg8zsfKemqoIn6SH52Q_u @else {{$item->background}} @endif" alt="Card image cap" style="border-radius: 20px; filter: brightness(70%)">
+        <img class="card-img-top img-raised" src="@if($item->background == null) https://drive.google.com/uc?export=view&id=1_Qm6Rr_4dIipg8zsfKemqoIn6SH52Q_u @else /storage/{{$item->background}} @endif" alt="Card image cap" style="border-radius: 20px; filter: brightness(70%)">
         <div class="text-white card-img-overlay overflow-hidden row align-items-center" style="height: 48%">
           <div class="col-8">
             @if ($item->diskon != null)
@@ -46,7 +46,7 @@
             @endif
           </div>
           <div class="col-4">
-            <img src="@if($item->intansi == null) https://lppm.unnes.ac.id/storage/2015/08/Logo-Transparan-Warna-1.png @else {{$item->intansi}} @endif" alt="">
+            <img src="@if($item->instansi) /storage/{{$item->instansi}} @else https://lppm.unnes.ac.id/storage/2015/08/Logo-Transparan-Warna-1.png @endif" alt="">
           </div>
         </div>
         <div class="card-body" style="max-height: 275px" >
@@ -115,7 +115,7 @@
                 @foreach($platinum as $item)
                 <div class="col-lg-4 d-flex justify-content-center">
                   <div class="card overflow-hidden" style="max-width: 20rem; border-radius: 20px; box-shadow: black">
-                    <img class="card-img-top img-raised" src="@if($item->background == null) https://drive.google.com/uc?export=view&id=1_Qm6Rr_4dIipg8zsfKemqoIn6SH52Q_u @else {{$item->background}} @endif" alt="Card image cap" style="border-radius: 20px; filter: brightness(70%)">
+                    <img class="card-img-top img-raised" src="@if($item->background == null) https://drive.google.com/uc?export=view&id=1_Qm6Rr_4dIipg8zsfKemqoIn6SH52Q_u @else /storage/{{$item->background}} @endif" alt="Card image cap" style="border-radius: 20px; filter: brightness(70%)">
                     <div class="text-white card-img-overlay overflow-hidden row align-items-center" style="height: 48%">
                       <div class="col-8">
                         @if ($item->diskon != null)
@@ -129,7 +129,7 @@
                         @endif
                       </div>
                       <div class="col-4">
-                        <img src="@if($item->intansi == null) https://lppm.unnes.ac.id/storage/2015/08/Logo-Transparan-Warna-1.png @else {{$item->intansi}} @endif" alt="">
+                        <img src="@if($item->instansi == null) https://lppm.unnes.ac.id/storage/2015/08/Logo-Transparan-Warna-1.png @else /storage/{{$item->instansi}} @endif" alt="">
                       </div>
                     </div>
                     <div class="card-body" style="max-height: 275px" >
@@ -234,17 +234,17 @@
       <div class="MultiCarousel" data-items="1,2,3,3" data-slide="1" id="MultiCarousel"  data-interval="1000">
               <div class="MultiCarousel-inner">
                   @foreach ($mentor as $item)
-                  <div class="item">
+                  <a href="/pembimbing/{{$item->id}}" class="item">
                     <div class="position-relative d-flex text-white">
                       <div class="filter filter-dark">
-                        <img src="@if($item->gambar != null) {{$item->gambar}} @else https://img.freepik.com/free-photo/portrait-young-asia-lady-with-positive-expression-arms-crossed-smile-broadly-dressed-casual-clothing-looking-camera-pink-background_7861-3201.jpg?t=st=1656720589~exp=1656721189~hmac=b5a386e7f63952a0c7f3cda3f92d9903eb5f1844085dc84f772b032e3669e41d&w=1380 @endif" alt="">
+                        <img src="@if($item->gambar != null) /storage/{{$item->gambar}} @else https://img.freepik.com/free-photo/portrait-young-asia-lady-with-positive-expression-arms-crossed-smile-broadly-dressed-casual-clothing-looking-camera-pink-background_7861-3201.jpg?t=st=1656720589~exp=1656721189~hmac=b5a386e7f63952a0c7f3cda3f92d9903eb5f1844085dc84f772b032e3669e41d&w=1380 @endif" alt="">
                       </div>
                       <div class="position-absolute text-center" style="left: 50%; bottom: 0; transform: translate(-50%, 0);">
                         <h4><strong>{{$item->nama}}</strong></h4>
-                        <p>{{$item->deskripsi_singkat}}</p>
+                        <p>{{$item->bidang}}</p>
                       </div>
                     </div>
-                  </div>
+                  </a>
                   @endforeach
               </div>
               <button class="btn btn-primary leftLst btn-icon"><i class="fa-solid fa-arrow-left"></i></button>

@@ -1,9 +1,11 @@
 @extends("layout.dashboard")
 
 @section("main")
-    <form action="/kelas/{{$kelas->id}}" method="post">
+    <form action="/kelas/{{$kelas->id}}" method="post" enctype="multipart/form-data">
         @method("put")
         @csrf
+        <input type="hidden" name="background_lama" value="{{$kelas->background}}">
+        <input type="hidden" name="instansi_lama" value="{{$kelas->instansi}}">
         <div class="form-group">
             <label for="namaKelas">Nama</label>
             <input type="text" class="form-control" required name="nama" value="{{$kelas->nama}}" id="namaKelas" placeholder="ex : kelas inggris">
@@ -40,21 +42,27 @@
             <small class="form-text text-muted"><span class="text-danger">*</span>wajib</small>
         </div>
         <div class="form-group">
-            <label for="background">Link Gambar Background</label>
-            <input type="text" class="form-control" id="background" name="background" value="{{$kelas->background}}" placeholder="ex : https://shopee.co.id/STIKER-BEBAS-GAMBAR-APA-AJA-i.120325226.3434298369">
+            <label for="background" class="form-label">Gambar Background <small class="form-text text-muted d-inline"><span class="text-danger">*</span>dimensi 16 x 9</small></label>
+            <input class="form-control" type="file" id="background" name="background">
             <small class="form-text text-muted"><span class="text-info">#</span>bisa kosong</small>
+            @error('background')
+            <div class="error text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group">
-            <label for="instansi">Link Gambar Institusi</label>
-            <input type="text" class="form-control" id="instansi" name="instansi" value="{{$kelas->instansi}}" placeholder="ex : https://shopee.co.id/STIKER-BEBAS-GAMBAR-APA-AJA-i.120325226.3434298369">
+            <label for="instansi" class="form-label">Gambar instansi <small class="form-text text-muted d-inline"><span class="text-danger">*</span>dimensi 1 x 1</small></label>
+            <input class="form-control" type="file" id="instansi" name="instansi">
             <small class="form-text text-muted"><span class="text-info">#</span>bisa kosong</small>
+            @error('instansi')
+            <div class="error text-danger">{{ $message }}</div>
+            @enderror
         </div>
         @if($fasilitas->isNotEmpty())<label class="d-block">Fasilitas</label>@endif
         <div class="form-group row gap-2">
             @foreach($fasilitas as $item)
             <div class="form-check col-3">
                 <label class="form-check-label">
-                <input class="form-check-input text-truncate" type="checkbox" {{ ($kelas->fasilitas->contains("id", $item->id)) ? "checked" : "" }} id="{{$item->id}}" name="fasilitas[]" value="{{$item->id}}"> {{$item->fasilitas}}
+                <input class="form-check-input text-truncate" type="checkbox" id="{{$item->id}}" name="fasilitas[]" {{ ($kelas->fasilitas->contains("id", $item->id)) ? "checked" : "" }} value="{{$item->id}}"> {{$item->fasilitas}}
                 <span class="form-check-sign"></span>
                 </label>
             </div>

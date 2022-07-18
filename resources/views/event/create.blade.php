@@ -1,7 +1,7 @@
 @extends("layout.dashboard")
 
 @section("main")
-    <form action="/event" method="post">
+    <form action="/event" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="event">Nama Event</label>
@@ -10,9 +10,17 @@
         </div>
         <div class="form-group">
             <label for="deskripsi">Deskripsi</label>
-            <input id="x" type="hidden" name="deskripsi">
+            <input id="x" type="hidden" required name="deskripsi">
             <trix-editor input="x"></trix-editor>
             <small class="form-text text-muted"><span class="text-danger">*</span>wajib</small>
+        </div>
+        <div class="form-group">
+            <label for="formFile" class="form-label">poster <small class="form-text text-muted d-inline"><span class="text-danger">*</span>ukuran A4</small></label>
+            <input class="form-control" type="file" id="formFile" name="poster">
+            <small class="form-text text-muted"><span class="text-info">#</span>bisa kosong</small>
+            @error('poster')
+            <div class="error text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="waktu_mulai">Waktu Mulai</label>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text("deskripsi");
+            $table->text("poster");
             $table->dateTime('start');
             $table->dateTime('end');
             $table->timestamps();

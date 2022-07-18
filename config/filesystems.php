@@ -36,6 +36,14 @@ return [
             'throw' => false,
         ],
 
+        "cpanel" => [
+            'driver' => 'local',
+            'root' => "/home/uxq6216v/public_html/storage",
+            'url' => "http://olshoppkm.skom.id/storage",
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

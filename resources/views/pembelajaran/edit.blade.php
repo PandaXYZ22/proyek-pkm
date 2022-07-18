@@ -10,7 +10,7 @@
             <small class="form-text text-muted"><span class="text-danger">*</span>wajib</small>
         </div>
         @error('pembelajaran')
-            <div class="error">{{ $message }}</div>
+            <div class="error text-danger">{{ $message }}</div>
         @enderror
         <button type="submit" class="btn btn-success">Edit Pembelajaran</button>
     </form>

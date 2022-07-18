@@ -1,7 +1,7 @@
 @extends("layout.dashboard")
 
 @section("main")
-    <form action="/platinum" method="post">
+    <form action="/platinum" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="namaKelas">Nama</label>
@@ -39,14 +39,20 @@
             <small class="form-text text-muted"><span class="text-danger">*</span>wajib</small>
         </div>
         <div class="form-group">
-            <label for="background">Link Background</label>
-            <input type="text" class="form-control" id="background" name="background" placeholder="ex : https://shopee.co.id/STIKER-BEBAS-GAMBAR-APA-AJA-i.120325226.3434298369">
+            <label for="background" class="form-label">Gambar Background <small class="form-text text-muted d-inline"><span class="text-danger">*</span>dimensi 16 x 9</small></label>
+            <input class="form-control" type="file" id="background" name="background">
             <small class="form-text text-muted"><span class="text-info">#</span>bisa kosong</small>
+            @error('background')
+            <div class="error text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group">
-            <label for="instansi">Link Institusi</label>
-            <input type="text" class="form-control" id="instansi" name="instansi" placeholder="ex : https://shopee.co.id/STIKER-BEBAS-GAMBAR-APA-AJA-i.120325226.3434298369">
+            <label for="instansi" class="form-label">Gambar Instansi <small class="form-text text-muted d-inline"><span class="text-danger">*</span>dimensi 1 x 1</small></label>
+            <input class="form-control" type="file" id="instansi" name="instansi">
             <small class="form-text text-muted"><span class="text-info">#</span>bisa kosong</small>
+            @error('instansi')
+            <div class="error text-danger">{{ $message }}</div>
+            @enderror
         </div>
         @if($fasilitas->isNotEmpty())<label class="d-block">Fasilitas</label>@endif
         <div class="form-group row gap-2">

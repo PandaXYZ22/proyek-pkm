@@ -10,6 +10,7 @@ use App\Models\FasilitasKelas;
 use App\Models\KelasPembelajaran;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class KelasController extends Controller
 {
@@ -48,6 +49,21 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "instansi" => "image|dimensions:ratio=1/1|mimes:png",
+            "background" => "image|dimensions:ratio=16/9"
+        ]);
+        $background = null;
+        $instansi = null;
+
+        if($request->file("background")) {
+            $background = $request->file("background")->store("kelas-background");
+        }
+
+        if ($request->file("instansi")) {
+            $instansi = $request->file("instansi")->store("kelas-instansi");
+        }
+
         Kelas::create([
             "nama" => $request->nama,
             "diskon" => $request->diskon,
@@ -56,10 +72,11 @@ class KelasController extends Controller
             "harga_lama" => $request->harga_lama,
             "harga_baru" => $request->harga_baru,
             "deskripsi_singkat" => $request->deskripsi_singkat,
-            "instansi" => $request->instansi,
-            "background" => $request->background,
+            "instansi" => $instansi,
+            "background" => $background,
             "masa" => $request->masa
         ]);
+
         $kelas = Kelas::latest()->first()->id;
         if($request->fasilitas) {
             foreach($request->fasilitas as $item) {
@@ -100,7 +117,7 @@ class KelasController extends Controller
     public function edit($id)
     {
         return view("kelas.edit", [
-            "kelas" => Kelas::find($id)->first(),
+            "kelas" => Kelas::find($id),
             "title" => "Kelas",
             "fasilitas" => Fasilitas::get(),
             "pembelajaran" => Pembelajaran::get()
@@ -116,6 +133,28 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            "instansi" => "image|dimensions:ratio=1/1|mimes:png",
+            "background" => "image|dimensions:ratio=16/9"
+        ]);
+
+        $background = $request->background_lama;
+        $instansi = $request->instansi_lama;
+        
+        if($request->file("background")) {
+            if ($request->background_lama) {
+                Storage::delete($request->background_lama);
+            }
+            $background = $request->file("background")->store("kelas-background");
+        }
+
+        if ($request->file("instansi")) {
+            if ($request->instansi_lama) {
+                Storage::delete($request->instansi_lama);
+            }
+            $instansi = $request->file("instansi")->store("kelas-instansi");
+        }
+
         $kelas = Kelas::find($id)->first();
         DB::table("fasilitas_kelas")->where("kelas_id", $id)->delete();
         DB::table("kelas_pembelajaran")->where("kelas_id", $id)->delete();
@@ -127,8 +166,8 @@ class KelasController extends Controller
             "harga_lama" => $request->harga_lama,
             "harga_baru" => $request->harga_baru,
             "deskripsi_singkat" => $request->deskripsi_singkat,
-            "instansi" => $request->instansi,
-            "background" => $request->background,
+            "instansi" => $instansi,
+            "background" => $background,
             "masa" => $request->masa
         ]);
         if ($request->fasilitas) {
@@ -158,9 +197,16 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-        Kelas::destroy($id);
-        DB::table("fasilitas_kelas")->where("kelas_id", $id)->delete();
-        DB::table("kelas_pembelajaran")->where("kelas_id", $id)->delete();
+        $kelas = Kelas::find($id);
+        if($kelas->background) {
+            Storage::delete($kelas->background);
+        }
+        if ($kelas->instansi) {
+            Storage::delete($kelas->instansi);
+        }
+        $kelas->delete();
+        DB::table("fasilitas_kelas")->where("kelas_id", $kelas->id)->delete();
+        DB::table("kelas_pembelajaran")->where("kelas_id", $kelas->id)->delete();
         return redirect("/kelas");
     }
 }

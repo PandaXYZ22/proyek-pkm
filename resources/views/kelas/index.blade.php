@@ -33,8 +33,8 @@
                 <td class="text-center">{{$item->harga_lama}}</td>
                 <td class="text-center">{{$item->harga_baru}}</td>
                 <td class="text-center">{{$item->deskripsi_singkat}}</td>
-                <td class="text-center">{{$item->background}}</td>
-                <td class="text-center">{{$item->instansi}}</td>
+                <td class="text-center"><img style="max-height: 40px" src="/storage/{{$item->background}}" alt=""></td>
+                <td class="text-center"><img style="max-height: 40px" src="/storage/{{$item->instansi}}" alt=""></td>
                 <td class="text-center">
                     @foreach($item->fasilitas as $fasilitas)
                         <span class="badge bg-info text-white">{{$fasilitas->fasilitas}}</span>

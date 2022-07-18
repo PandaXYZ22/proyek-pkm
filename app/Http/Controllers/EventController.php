@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -42,9 +43,20 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "poster" => "image|dimensions:ratio=70/99"
+        ]);
+
+        $poster = null;
+
+        if($request->file("poster")) {
+            $poster = $request->file("poster")->store("poster-event");
+        }
+
         Event::create([
             "title" => $request->event,
             "deskripsi" => $request->deskripsi,
+            "poster" => $poster,
             "start" => $request->waktu_mulai,
             "end" => $request->waktu_selesai
         ]);
@@ -69,11 +81,11 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Event $event)
     {
         return view("event.edit", [
             "title" => "Event",
-            "event" => Event::find($id)
+            "event" => $event
         ]);
     }
 
@@ -84,11 +96,25 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Event $event)
     {
-        Event::find($id)->update([
+        $request->validate([
+            "poster" => "image|dimensions:ratio=70/99"
+        ]);
+
+        $poster = $request->poster_lama;
+        
+        if($request->file("poster")) {
+            if ($request->poster_lama) {
+                Storage::delete($request->poster_lama);
+            }
+            $poster = $request->file("poster")->store("poster-event");
+        }
+
+        $event->update([
             "title" => $request->event,
             "deskripsi" => $request->deskripsi,
+            "poster" => $poster,
             "start" => $request->waktu_mulai,
             "end" => $request->waktu_selesai
         ]);
@@ -102,9 +128,12 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Event $event)
     {
-        Event::destroy($id);
+        if ($event->poster) {
+            Storage::delete($event->poster);
+        }
+        Event::destroy($event->id);
 
         return redirect("/event");
     }

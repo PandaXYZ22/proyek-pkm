@@ -63,4 +63,11 @@ class HomeController extends Controller
             "event" => Event::find($id)
         ]);
     }
+
+    public function showMentor($id) {
+        return view("mentor.show", [
+            "title" => "Mentor",
+            "mentor" => Mentor::find($id)
+        ]);
+    }
 }

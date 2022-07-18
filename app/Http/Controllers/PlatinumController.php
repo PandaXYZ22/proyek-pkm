@@ -8,6 +8,7 @@ use App\Models\Pembelajaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class PlatinumController extends Controller
 {
@@ -46,6 +47,21 @@ class PlatinumController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "instansi" => "image|dimensions:ratio=1/1|mimes:png",
+            "background" => "image|dimensions:ratio=16/9"
+        ]);
+        $background = null;
+        $instansi = null;
+
+        if($request->file("background")) {
+            $background = $request->file("background")->store("platinum-background");
+        }
+
+        if ($request->file("instansi")) {
+            $instansi = $request->file("instansi")->store("platinum-instansi");
+        }
+        
         Platinum::create([
             "nama" => $request->nama,
             "diskon" => $request->diskon,
@@ -54,8 +70,8 @@ class PlatinumController extends Controller
             "harga_lama" => $request->harga_lama,
             "harga_baru" => $request->harga_baru,
             "deskripsi_singkat" => $request->deskripsi_singkat,
-            "instansi" => $request->instansi,
-            "background" => $request->background,
+            "instansi" => $instansi,
+            "background" => $background,
             "masa" => $request->masa
         ]);
         $platinum = Platinum::latest()->first()->id;
@@ -114,6 +130,28 @@ class PlatinumController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            "instansi" => "image|dimensions:ratio=1/1|mimes:png",
+            "background" => "image|dimensions:ratio=16/9"
+        ]);
+
+        $background = $request->background_lama;
+        $instansi = $request->instansi_lama;
+        
+        if($request->file("background")) {
+            if ($request->background_lama) {
+                Storage::delete($request->background_lama);
+            }
+            $background = $request->file("background")->store("platinum-background");
+        }
+
+        if ($request->file("instansi")) {
+            if ($request->instansi_lama) {
+                Storage::delete($request->instansi_lama);
+            }
+            $instansi = $request->file("instansi")->store("platinum-instansi");
+        }
+
         DB::table("fasilitas_platinum")->where("platinum_id", $id)->delete();
         DB::table("pembelajaran_platinum")->where("platinum_id", $id)->delete();
         Platinum::find($id)->update([
@@ -124,8 +162,8 @@ class PlatinumController extends Controller
             "harga_lama" => $request->harga_lama,
             "harga_baru" => $request->harga_baru,
             "deskripsi_singkat" => $request->deskripsi_singkat,
-            "instansi" => $request->instansi,
-            "background" => $request->background,
+            "instansi" => $instansi,
+            "background" => $background,
             "masa" => $request->masa
         ]);
         if($request->fasilitas) {
@@ -155,7 +193,14 @@ class PlatinumController extends Controller
      */
     public function destroy($id)
     {
-        Platinum::destroy($id);
+        $platinum = Platinum::find($id);
+        if ($platinum->background) {
+            Storage::delete($platinum->background);
+        }
+        if ($platinum->instansi) {
+            Storage::delete($platinum->instansi);
+        }
+        $platinum->delete();
         DB::table("fasilitas_platinum")->where("platinum_id", $id)->delete();
         DB::table("pembelajaran_platinum")->where("platinum_id", $id)->delete();
         return redirect("/platinum");

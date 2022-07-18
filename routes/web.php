@@ -42,7 +42,7 @@ Route::resource("platinum", PlatinumController::class)->except("show")->middlewa
 
 Route::resource("pertanyaan", PertanyaanController::class)->middleware("auth");
 
-Route::resource("mentor", MentorController::class)->middleware("auth");
+Route::resource("mentor", MentorController::class)->middleware("auth")->except("show");
 
 Route::resource("pembelajaran", PembelajaranController::class)->middleware("auth");
 
@@ -53,3 +53,5 @@ Route::get("/even", [HomeController::class, "showEvent"]);
 Route::get("/even/{id}", [HomeController::class, "detailEvent"]);
 
 Route::resource("event", EventController::class)->middleware("auth")->except("show");
+
+Route::get("/pembimbing/{id}", [HomeController::class, "showMentor"]);

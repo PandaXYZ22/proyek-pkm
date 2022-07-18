@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Mentor;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class MentorController extends Controller
 {
@@ -40,9 +42,19 @@ class MentorController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "gambar" => "image|dimensions:ratio=1/1"
+        ]);
+
+        $gambar = null;
+
+        if ($request->file("gambar")) {
+            $gambar = $request->file("gambar")->store("gambar-mentor");
+        }
         Mentor::create([
             "nama" => $request->nama,
-            "gambar" => $request->gambar,
+            "bidang" => $request->bidang,
+            "gambar" => $gambar,
             "deskripsi_singkat" => $request->deskripsi_singkat
         ]);
         return redirect("/mentor");
@@ -54,7 +66,7 @@ class MentorController extends Controller
      * @param  \App\Models\Mentor  $mentor
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Mentor $mentor)
     {
         //
     }
@@ -65,11 +77,11 @@ class MentorController extends Controller
      * @param  \App\Models\Mentor  $mentor
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Mentor $mentor)
     {
         return view("mentor.edit", [
             "title" => "Mentor",
-            "mentor" => Mentor::find($id)->first()
+            "mentor" => $mentor
         ]);
     }
 
@@ -80,11 +92,26 @@ class MentorController extends Controller
      * @param  \App\Models\Mentor  $mentor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Mentor $mentor)
     {
-        Mentor::find($id)->update([
+        $request->validate([
+            "gambar" => "image|dimensions:ratio=1/1"
+        ]);
+
+        if ($request->file("gambar")) {
+            $gambar = $request->file("gambar")->store("gambar-mentor");
+        }else {
+            $gambar = $request->gambar_lama;
+        }
+        if ($request->gambar_lama) {
+            if ($request->file("gambar")) {
+                Storage::delete($request->gambar_lama);
+            }
+        }
+        $mentor->update([
             "nama" => $request->nama,
-            "gambar" => $request->gambar,
+            "bidang" => $request->bidang,
+            "gambar" => $gambar,
             "deskripsi_singkat" => $request->deskripsi_singkat
         ]);
         return redirect("/mentor");
@@ -96,9 +123,12 @@ class MentorController extends Controller
      * @param  \App\Models\Mentor  $mentor
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Mentor $mentor)
     {
-        Mentor::destroy($id);
+        if ($mentor->gambar) {
+            Storage::delete($mentor->gambar);
+        }
+        Mentor::destroy($mentor->id);
         return redirect("/mentor");
     }
 }

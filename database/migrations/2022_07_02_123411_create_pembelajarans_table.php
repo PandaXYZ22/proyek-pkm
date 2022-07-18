@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pembelajarans', function (Blueprint $table) {
             $table->id();
-            $table->string("pembelajaran")->unique();
+            $table->string("pembelajaran");
             $table->timestamps();
         });
     }

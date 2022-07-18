@@ -8,6 +8,7 @@
                 <th class="text-center">id</th>
                 <th class="text-center" style="min-width: 15rem">Nama Event</th>
                 <th class="text-center" style="min-width: 15rem">Deskripsi</th>
+                <th class="text-center" style="min-width: 15rem">Poster</th>
                 <th class="text-center" style="min-width: 18rem">Waktu Mulai</th>
                 <th class="text-center" style="min-width: 18rem">Waktu Selesai</th>
                 <th class="text-center" style="min-width: 15rem">Action</th>
@@ -19,6 +20,7 @@
                 <td class="text-center" >{{$item->id}}</td>
                 <td class="text-center">{{$item->title}}</td>
                 <td class="text-center">{!!$item->deskripsi!!}</td>
+                <td class="text-center"><img style="max-height: 40px" src="/storage/{{$item->poster}}" alt=""></td>
                 <td class="text-center">{{\Carbon\Carbon::parse($item->start)->format('l jS \of F Y h:i:s A')}}</td>
                 <td class="text-center">{{\Carbon\Carbon::parse($item->end)->format('l jS \of F Y h:i:s A')}}</td>
                 <td class="d-flex justify-content-around">
@@ -36,7 +38,7 @@
             </tr>
             @endforeach
             <tr>
-                <td class="text-center" colspan="5">Tambah event</td>
+                <td class="text-center" colspan="6">Tambah event</td>
                 <td class="text-center">
                     <a href="/event/create" rel="tooltip" class="btn btn-info rounded-pill text-white">
                         Tambah
